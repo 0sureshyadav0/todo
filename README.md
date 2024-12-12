@@ -66,8 +66,8 @@ To-Do is a simple and elegant task management app built with Flutter. This app a
 ```bash
 todo/
 ├── lib/
-|   ├── components/
-|   |   └── bottom_sheet.dart
+│   ├── components/
+│   │   └── bottom_sheet.dart
 │   ├── providers/
 │   │   └── theme_provider.dart
 │   ├── screens/
