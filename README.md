@@ -36,10 +36,9 @@ To-Do is a simple and elegant task management app built with Flutter. This app a
    git clone https://github.com/0sureshyadav0/todo.git
    ```
 2. Navigate to the project directory:
-   
-  ```bash
-  cd todo
-  ```
+   ```bash
+   cd todo
+   ```
 3. Install dependencies:
 
    ```bash
