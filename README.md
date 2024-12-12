@@ -41,14 +41,14 @@ To-Do is a simple and elegant task management app built with Flutter. This app a
   ```
 3. Install dependencies:
 
-```bash
-flutter pub get
-```
+   ```bash
+   flutter pub get
+   ```
 4. Run the app:
-```bash
-flutter run
-```
---
+   ```bash
+   flutter run
+   ```
+---
 
 ##🛠️ Technologies Used
 - **Flutter**: The app framework.
@@ -56,7 +56,7 @@ flutter run
 - **Provider Package**: For state management.
 - **Hive Package**: For local storage.
   
---
+---
 
 ## 📂 Project Structure
 ```bash
@@ -73,25 +73,27 @@ todo/
 │   │   └── logo.png
 └── pubspec.yaml
 ```
---
+---
 
 ## 📄 License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
---
+---
 
 ## 🧑‍💻 Developer
 Suresh Yadav
 🌐 [sureshyadav.info.np](https://www.sureshyadav.info.np)
 
---
+---
 
 ## 🙌 Contribution
 Contributions are welcome! Feel free to open an issue or submit a pull request.
 
+---
+
 ## 📞 Support
 For any issues or feedback, contact Suresh Yadav.
 
---
+---
 
 Stay organized with To-Do! 📋
