@@ -115,6 +115,7 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       // backgroundColor: Colors.red,
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.transparent,
       body: Stack(
         children: [
@@ -194,7 +195,7 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         borderRadius:
                                             BorderRadius.circular(10.0)),
-                                    height: deviceHeight / 15,
+                                    height: deviceHeight / 12,
                                     child: ListTile(
                                         onTap: () {
                                           Navigator.push(
@@ -207,11 +208,21 @@ class _HomePageState extends State<HomePage> {
                                         title: Text(
                                           "${todoListProvider.getTodoList[index]['title']}",
                                           style: TextStyle(
-                                              color: Colors.white,
-                                              decorationThickness: 6.0,
-                                              decoration: isDone
-                                                  ? TextDecoration.lineThrough
-                                                  : TextDecoration.none),
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        subtitle: Text(
+                                          "${todoListProvider.getTodoList[index]['time'] ?? 'Time is not set'}",
+                                          style: TextStyle(
+                                            color: todoListProvider
+                                                            .getTodoList[index]
+                                                        ['time'] ==
+                                                    null
+                                                ? const Color.fromARGB(
+                                                    255, 204, 203, 203)
+                                                : const Color.fromARGB(
+                                                    255, 3, 221, 10),
+                                          ),
                                         ),
                                         trailing: Row(
                                           mainAxisSize: MainAxisSize.min,

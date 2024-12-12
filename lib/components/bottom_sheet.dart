@@ -1,7 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:time_dropper/time_dropper.dart';
 import 'package:todo/providers/todo_list_provider.dart';
 
 class CustomBottomSheet extends StatefulWidget {
@@ -28,7 +30,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
             image: AssetImage("./assets/images/background.jpeg"),
           ),
           borderRadius: BorderRadius.circular(10.0)),
-      height: deviceHeight / 1.9,
+      height: deviceHeight,
       width: deviceWidth,
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
@@ -38,7 +40,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
             children: [
               const SizedBox(height: 20),
               Container(
-                height: deviceHeight / 2.1,
+                height: deviceHeight / 2,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.grey.withOpacity(0.3),
@@ -48,25 +50,43 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                   child: Column(
                     children: [
                       const SizedBox(height: 20),
-                      TextFormField(
-                        controller: _titleController,
-                        cursorColor: Colors.white,
-                        style: const TextStyle(
-                          color: Colors.white,
-                        ),
-                        decoration: const InputDecoration(
-                            focusColor: Colors.red,
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                              color: Colors.red,
-                              width: 2.0,
-                            )),
-                            border: OutlineInputBorder(),
-                            floatingLabelStyle: TextStyle(color: Colors.red),
-                            hintText: "Title",
-                            hintStyle: TextStyle(
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              controller: _titleController,
+                              cursorColor: Colors.white,
+                              style: const TextStyle(
+                                color: Colors.white,
+                              ),
+                              decoration: const InputDecoration(
+                                  focusColor: Colors.red,
+                                  focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                    color: Colors.red,
+                                    width: 2.0,
+                                  )),
+                                  border: OutlineInputBorder(),
+                                  floatingLabelStyle:
+                                      TextStyle(color: Colors.red),
+                                  hintText: "Title",
+                                  hintStyle: TextStyle(
+                                    color: Colors.white,
+                                  )),
+                            ),
+                          ),
+                          SizedBox(width: 20),
+                          IconButton(
+                            onPressed: () {
+                              showDialog();
+                            },
+                            icon: FaIcon(
+                              FontAwesomeIcons.clock,
                               color: Colors.white,
-                            )),
+                            ),
+                          )
+                        ],
                       ),
                       const SizedBox(height: 20),
                       TextFormField(
@@ -94,7 +114,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                         onTap: () {
                           Provider.of<TodoListProvider>(context, listen: false)
                               .addTodo(_titleController.text,
-                                  _descController.text, false);
+                                  _descController.text, false, time!);
                           Navigator.pop(context);
                         },
                         child: Container(
@@ -137,5 +157,26 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
         ),
       ),
     );
+  }
+
+  showDialog() {
+    showTimeDropper(
+        context: context,
+        onDone: close(),
+        onTimeChanged: (time) {
+          setState(() {
+            close();
+            timeUpdate = time;
+          });
+        });
+  }
+
+  TimeOfDay timeUpdate = TimeOfDay.now();
+  String? time;
+  close() {
+    setState(() {
+      time = timeUpdate.format(context).toString();
+      print(timeUpdate.format(context));
+    });
   }
 }

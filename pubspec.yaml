@@ -42,6 +42,7 @@ dependencies:
   path_provider_android: ^2.2.14
   get: ^4.6.6
   flutter_launcher_icons: ^0.14.2
+  time_dropper: ^0.1.0
 
 dev_dependencies:
   flutter_test:

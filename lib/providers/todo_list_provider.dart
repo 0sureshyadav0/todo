@@ -20,12 +20,9 @@ class TodoListProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addTodo(String title, String desc, bool isDone) async {
-    _getTodoList.add({
-      'title': title,
-      'desc': desc,
-      'isDone': isDone,
-    });
+  void addTodo(String title, String desc, bool isDone, String time) async {
+    _getTodoList
+        .add({'title': title, 'desc': desc, 'isDone': isDone, 'time': time});
     var box = await Hive.openBox('ToDoBox');
     await box.put('myTodoList', _getTodoList);
     notifyListeners();
