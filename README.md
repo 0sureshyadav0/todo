@@ -20,11 +20,12 @@ To-Do is a simple and elegant task management app built with Flutter. This app a
 
 <center>
 <div style="display:flex;gap:20px;">
-<img src="./assets/images/SplashScreen.png" height="720px" width="300px">
-<img src="./assets/images/img1.jpg" height="720px" width="300px">
-<img src="./assets/images/img2.jpg" height="720px" width="300px">
-<img src="./assets/images/img3.jpg" height="720px" width="300px">
-<img src="./assets/images/img4.jpg" height="720px" width="300px">
+<img src="https://github.com/0sureshyadav0/todo/blob/master/assets/images/SplashScreen.png?raw=true" height="720px" width="300px">
+<img src="https://github.com/0sureshyadav0/todo/blob/master/assets/images/img1.jpg?raw=true" height="720px" width="300px">
+<img src="https://github.com/0sureshyadav0/todo/blob/master/assets/images/img2.jpg?raw=true" height="720px" width="300px">
+<img src="https://github.com/0sureshyadav0/todo/blob/master/assets/images/img3.jpg?raw=true" height="720px" width="300px">
+<img src="https://github.com/0sureshyadav0/todo/blob/master/assets/images/img4.jpg?raw=true" height="720px" width="300px">
+
    
 </div>
 </center>
