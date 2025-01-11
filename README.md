@@ -87,7 +87,7 @@ todo/
 ---
 
 ## 📄 License
-This project is licensed under the MIT License. See the [LICENSE](./LICENST.txt) file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/0sureshyadav0/todo/blob/master/LICENSE.txt?raw=true) file for details.
 
 ---
 
