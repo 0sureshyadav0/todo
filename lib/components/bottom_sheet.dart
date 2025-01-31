@@ -1,7 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:time_dropper/time_dropper.dart';
 import 'package:todo/providers/todo_list_provider.dart';
@@ -76,14 +77,16 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                                   )),
                             ),
                           ),
-                          SizedBox(width: 20),
-                          IconButton(
-                            onPressed: () {
-                              showDialog();
-                            },
-                            icon: FaIcon(
-                              FontAwesomeIcons.clock,
-                              color: Colors.white,
+                          const SizedBox(width: 20),
+                          InkWell(
+                            onTap: showDialog,
+                            child: const SizedBox(
+                              height: 50,
+                              width: 50,
+                              child: Image(
+                                image:
+                                    AssetImage('./assets/newImages/clock.png'),
+                              ),
                             ),
                           )
                         ],
@@ -112,10 +115,16 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                       const SizedBox(height: 20),
                       InkWell(
                         onTap: () {
-                          Provider.of<TodoListProvider>(context, listen: false)
-                              .addTodo(_titleController.text,
-                                  _descController.text, false, time!);
-                          Navigator.pop(context);
+                          time != null
+                              ? {
+                                  Provider.of<TodoListProvider>(context,
+                                          listen: false)
+                                      .addTodo(_titleController.text,
+                                          _descController.text, false, time!),
+                                  Navigator.pop(context)
+                                }
+                              : Get.snackbar("Error", "Please select time",
+                                  colorText: Colors.white);
                         },
                         child: Container(
                           width: deviceWidth,
@@ -136,7 +145,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                                 color: Colors.red,
                               ),
                             ),
-                            color: Colors.grey.withOpacity(0.3),
+                            color: Colors.grey.withAlpha((0.3 * 255).toInt()),
                           ),
                           child: const Center(
                             child: Text(

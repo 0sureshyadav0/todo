@@ -7,91 +7,6 @@ import 'package:todo/providers/todo_list_provider.dart';
 import 'package:todo/screens/todo_description.dart';
 // import 'package:todo/components/bottom_sheet.dart';
 
-class CustomSnackbar {
-  static void show(
-    BuildContext context, {
-    required String title,
-    required String message,
-    Duration duration = const Duration(seconds: 3),
-    SnackPosition position = SnackPosition.bottom,
-    Color textColor = Colors.white,
-  }) {
-    final overlay = Overlay.of(context);
-    final overlayEntry = OverlayEntry(
-      builder: (context) => Positioned(
-        top: position == SnackPosition.top ? 50.0 : null,
-        bottom: position == SnackPosition.bottom ? 50.0 : null,
-        left: 20.0,
-        right: 20.0,
-        child: Material(
-          color: Colors.transparent,
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 300),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(15.0),
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                child: Container(
-                  padding: const EdgeInsets.all(16.0),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2), // Translucent white
-                    borderRadius: BorderRadius.circular(15.0),
-                    border: Border.all(
-                      color: Colors.white.withOpacity(0.3), // Light border
-                      width: 1.5,
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
-                        blurRadius: 10,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        title,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: textColor,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        message,
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: textColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-
-    overlay.insert(overlayEntry);
-
-    // Remove Snackbar after duration
-    Future.delayed(duration, () {
-      overlayEntry.remove();
-    });
-  }
-}
-
-enum SnackPosition {
-  top,
-  bottom,
-}
-
 class HomePage extends StatefulWidget {
   final String title;
   const HomePage({super.key, required this.title});
@@ -207,7 +122,7 @@ class _HomePageState extends State<HomePage> {
                                         },
                                         title: Text(
                                           "${todoListProvider.getTodoList[index]['title']}",
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             color: Colors.white,
                                           ),
                                         ),
@@ -359,47 +274,6 @@ class _HomePageState extends State<HomePage> {
                               }),
                         );
                       }),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 5),
-                        child: InkWell(
-                          onTap: () {
-                            showModalBottomSheet(
-                                context: context,
-                                builder: (context) {
-                                  return const CustomBottomSheet();
-                                });
-                          },
-                          child: Container(
-                            width: deviceWidth,
-                            decoration: BoxDecoration(
-                                color: Colors.grey.withOpacity(0.3),
-                                border: const Border(
-                                  left: BorderSide(
-                                    color: Colors.red,
-                                  ),
-                                  right: BorderSide(
-                                    color: Colors.red,
-                                  ),
-                                  top: BorderSide(
-                                    color: Colors.red,
-                                  ),
-                                  bottom: BorderSide(
-                                    color: Colors.red,
-                                  ),
-                                ),
-                                borderRadius: BorderRadius.circular(10.0)),
-                            height: deviceHeight / 18,
-                            child: const Center(
-                              child: Text(
-                                "A D D",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -407,6 +281,19 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: FloatingActionButton(
+          onPressed: () {
+            showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return const CustomBottomSheet();
+                });
+          },
+          child: const Icon(Icons.add),
+        ),
       ),
     );
   }
